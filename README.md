@@ -7,8 +7,7 @@ OpenFaaS Grafana [Docker image](https://hub.docker.com/r/stefanprodan/faas-grafa
 Run Grafan in OpenFaaS Kubernetes namespace:
 
 ```bash
-kubectl -n openfaas run \
---image=stefanprodan/faas-grafana:4.6.3 \
+kubectl -n openfaas run --generator=run-pod/v1 --image=stefanprodan/faas-grafana:4.6.3 \   
 --port=3000 \
 grafana
 ```
@@ -16,9 +15,7 @@ grafana
 Expose Grafan with a NodePort:
 
 ```bash
-kubectl -n openfaas expose deployment grafana \
---type=NodePort \
---name=grafana
+kubectl -n openfaas expose pod grafana --type=NodePort --name=grafana
 ```
 
 Find Grafana node port address:
